@@ -19,7 +19,7 @@ jobs:
         image: mysql:8.0.33
         env:
           MYSQL_ROOT_PASSWORD: 1234
-          MYSQL_DATABASE: dailry
+          MYSQL_DATABASE: myButler
         ports:
           - 3306:3306
     steps:
@@ -52,11 +52,11 @@ jobs:
           file: ./backend/DockerFile-Dev
           push: true
           platforms: linux/amd64
-          tags: ${{ secrets.MYBUTLER_DOCKER_HUB_USERNAME }}/dailry:dev_${{ steps.get-timestamp.outputs.timestamp }}
+          tags: ${{ secrets.MYBUTLER_DOCKER_HUB_USERNAME }}/myButler:dev_${{ steps.get-timestamp.outputs.timestamp }}
 
   deploy:
     needs: build
-    runs-on: [ self-hosted, dailry-dev ]
+    runs-on: [ self-hosted, myButler-dev ]
     steps:
       - name: 배포 스크립트 실행
         run: |
